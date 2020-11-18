@@ -2,9 +2,9 @@
 import os
 import sys
 from pathlib import Path
-
 import numpy as np
 try:
+    # sys.path.append('D:/deep-learning/PycharmProjects/linear-algebra-basics/lib')
     sys.path.append(os.path.join(Path(os.getcwd()).parent, 'lib'))
     from common import numerical_gradient
 except ImportError:
@@ -17,7 +17,6 @@ def f(x):
 
 # 함수 테스트
 # print(f(np.array([3., 4.])))
-
 gra1 = numerical_gradient(f, np.array([3., 4.]))
 gra2 = numerical_gradient(f, np.array([-1., -1.5]))
 gra3 = numerical_gradient(f, np.array([-0.25, -0.25]))
