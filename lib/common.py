@@ -1,6 +1,7 @@
 import numpy as np
 
 
+# 수치미분으로 기울기 구하기
 def numerical_gradient(f, x):
     h = 1e-4
     gradient = np.zeros_like(x)
@@ -19,6 +20,7 @@ def numerical_gradient(f, x):
     return gradient
 
 
+# 경사하강법 구현1
 def gradient_descent(f, x, lr=0.01, epoch=100):
     for i in range(epoch):
         gradient = numerical_gradient(f, x)
@@ -29,6 +31,8 @@ def gradient_descent(f, x, lr=0.01, epoch=100):
     return x
 
 
+# 최소제곱법
+# 여러 점에서 직선의 기울기 구하기
 def method_least_squares(x, y):
     mx = sum(x)/len(x)
     my = sum(y)/len(y)
@@ -47,3 +51,18 @@ def method_least_squares(x, y):
     mls_b = my - (mx * mls_a)
 
     return mls_a, mls_b
+
+
+# 평균제곱오차(MSE, Mean Squares Error)
+def mean_squares_error(x, data_x, data_y):
+
+    # s = 0
+    # for i in range(len(data_x)):
+    #     data_y_hat = x[0] * data_x[i] + x[1]
+    #     s += ((data_y_hat - data_y[i]) ** 2)
+    # e = s / len(data_x)
+
+    data_y_hat = [x[0] * dx + x[1] for dx in data_x]
+    e = np.mean([(dyh - dy)**2 for dyh, dy in zip(data_y_hat, data_y)])
+
+    return e
