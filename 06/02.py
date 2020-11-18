@@ -10,7 +10,7 @@ def analytic_diff(x):
 
 def numerical_diff(f, x):
     h = 1e-4
-    return (f(x+h) - f(x)) / h
+    return (f(x+h) - f(x-h)) / (2*h)
 
 
 print(f'Numerical Diffirentiation Value:{numerical_diff(f, 5)}')
