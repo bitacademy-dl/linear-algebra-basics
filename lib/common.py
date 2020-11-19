@@ -51,6 +51,19 @@ def gradient_descent(f, x, lr=0.01, epoch=100, data_training=None):
     return x
 
 
+# 평균제곱오차(MSE, Mean Squares Error)
+def mean_squares_error(x, data_training):
+    data_x, data_y = data_training
+
+    s = 0
+    for i in range(len(data_x)):
+        data_y_hat = x[0] * data_x[i] + x[1]
+        s += ((data_y_hat - data_y[i]) ** 2)
+    e = s / len(data_x)
+
+    return e
+
+
 # 최소제곱법
 # 여러 점에서 직선의 기울기 구하기
 def method_least_squares(x, y):

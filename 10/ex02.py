@@ -16,5 +16,5 @@ scores = [81, 93, 91, 97]
 a, b = method_least_squares(times, scores)
 print(f'직선 y = {a}x + {b}')
 
-print(f'오차(평균제곱오차):{mean_squares_error(np.array([a, b]), times, scores)}')
+print(f'오차(평균제곱오차):{mean_squares_error(np.array([a, b]), (times, scores))}')
 
