@@ -14,10 +14,10 @@ def f(x1):
 
 
 # (x0, x1) = (3, 4)
-print(f'Numerical Partial Diffierentiation Value:{numerical_diff(f, 4)}')
+print(f'Numerical Partial Diffierentiation Value:{numerical_diff(f, 4.)}')
 
 # (x0, x1) = (3, 1)
-print(f'Numerical Partial Diffierentiation Value:{numerical_diff(f, 1)}')
+print(f'Numerical Partial Diffierentiation Value:{numerical_diff(f, 1.)}')
 
 # (x0, x1) = (3, 2)
-print(f'Numerical Partial Diffierentiation Value:{numerical_diff(f, 2)}')
+print(f'Numerical Partial Diffierentiation Value:{numerical_diff(f, 2.)}')
