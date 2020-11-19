@@ -1,10 +1,23 @@
 import numpy as np
 
 
-# 수치미분으로 기울기 구하기
-def numerical_gradient(f, x):
+# 수치미분(x변수가 하나일 때....)
+def numerical_diff(f, x):
     h = 1e-4
-    gradient = np.zeros_like(x)
+    dx = (f(x+h) - f(x-h)) / (2 * h)
+
+    return dx
+
+
+# 수치편미분(x변수가 여러 개 일때..)
+def numerical_partial_diff(f, x):
+    """
+    return 변수 x(벡터,1차원 numpy array)에 대한 편미분 결과(벡터, 1차원 numpy array) 반환
+    : param f: 손실함수
+    : pram x : 변수(벡터, 1차원 numpy array)
+    """
+    h = 1e-4
+    dx = np.zeros_like(x)
 
     for i in range(x.size):
         tmp = x[i]
@@ -13,11 +26,17 @@ def numerical_gradient(f, x):
         h1 = f(x)
         x[i] = tmp - h
         h2 = f(x)
-        gradient[i] = (h1 - h2) / (2 * h)
+        dx[i] = (h1 - h2) / (2 * h)
 
         x[i] = tmp
 
-    return gradient
+    return dx
+
+
+# 기울기 구하기 = 수치편미분
+numerical_gradient = numerical_partial_diff
+
+
 
 
 # 수치미분으로 기울기 구하기
