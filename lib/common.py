@@ -40,21 +40,15 @@ def numerical_partial_diff(f, x, data_training=None):
 numerical_gradient = numerical_partial_diff
 
 
-
-
-
-# 경사하강법: no training data
-def gradient_descent(f, x, lr=0.01, epoch=100):
+# 경사하강법
+def gradient_descent(f, x, lr=0.01, epoch=100, data_training=None):
     for i in range(epoch):
-        gradient = numerical_gradient(f, x)
+        gradient = numerical_gradient(f, x, data_training)
         # 출력
         print(f'epoch={i+1}, gradient={gradient}, x={x}')
         x -= lr * gradient
 
     return x
-
-
-
 
 
 # 최소제곱법
@@ -75,40 +69,6 @@ def method_least_squares(x, y):
     mls_b = my - (mx * mls_a)
 
     return mls_a, mls_b
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 경사하강법 구현2 - 선형회귀
-def gradient_descent_linear_regression(f, x, lr=0.01, epoch=100, data_training=None):
-    for i in range(epoch):
-        gradient = numerical_gradient_training(f, x, data_training)
-        # 출력
-        print(f'epoch={i+1}, gradient={gradient}, x={x}')
-        x -= lr * gradient
-
-    return x
 
 
 

@@ -1,3 +1,4 @@
+# 경사하강법
 import os
 import sys
 from pathlib import Path
