@@ -27,20 +27,22 @@ times = [2, 4, 6, 8]
 ptimes = [0, 4, 2, 3]
 scores = [81, 93, 91, 97]
 
-
+# 경사하강법
 x = np.array([0, 0, 0])
+data_training = (times, ptimes, scores)
+
 for i in range(5000):
     h = 1.0e-4
-    h1 = mean_squares_error(np.array([x[0]+h, x[1], x[2]]), (times, ptimes, scores))
-    h2 = mean_squares_error(np.array([x[0]-h, x[1], x[2]]), (times, ptimes, scores))
+    h1 = mean_squares_error(np.array([x[0]+h, x[1], x[2]]), data_training)
+    h2 = mean_squares_error(np.array([x[0]-h, x[1], x[2]]), data_training)
     dx0 = (h1-h2) / (2*h)
 
-    h1 = mean_squares_error(np.array([x[0], x[1]+h, x[2]]), (times, ptimes, scores))
-    h2 = mean_squares_error(np.array([x[0], x[1]-h, x[2]]), (times, ptimes, scores))
-    dx1 = (h1-h2)/ (2 * h)
+    h1 = mean_squares_error(np.array([x[0], x[1]+h, x[2]]), data_training)
+    h2 = mean_squares_error(np.array([x[0], x[1]-h, x[2]]), data_training)
+    dx1 = (h1-h2) / (2 * h)
 
-    h1 = mean_squares_error(np.array([x[0], x[1], x[2] + h]), (times, ptimes, scores))
-    h2 = mean_squares_error(np.array([x[0], x[1], x[2] - h]), (times, ptimes, scores))
+    h1 = mean_squares_error(np.array([x[0], x[1], x[2] + h]), data_training)
+    h2 = mean_squares_error(np.array([x[0], x[1], x[2] - h]), data_training)
     dx2 = (h1-h2) / (2 * h)
 
     gradient = np.array([dx0, dx1, dx2])
@@ -48,18 +50,8 @@ for i in range(5000):
 
     x = x - 0.01 * gradient
 
-result = x
-
-
-# 경사하강법
-# result = gradient_descent(mean_squares_error, np.array([0., 0., 0.]), epoch=5000, data_training=(times, ptimes, scores))
-# print(result)
-
-# ==============================================================================================
-
-
 # predict(inference)
-x1_p = 2
-x2_p = 2
-y_p = result[0] * x1_p + result[1] * x2_p + result[2]
-print(y_p)
+x1_p = 4
+x2_p = 0
+y_p = x[0] * x1_p + x[1] * x2_p + x[2]
+print(f'공부를 {x1_p}시간 하고 과외를 {x2_p}시간 받았을  때, 받을 수 있는 점수는 {y_p}점')
