@@ -1,4 +1,4 @@
-# 경사하강법(해석편미분)
+# 경사하강법(해석미분)
 import os
 import sys
 from pathlib import Path
