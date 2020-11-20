@@ -1,4 +1,4 @@
-#Logistic Regression(로지스틱 회귀, 수치미분)
+# Logistic Regression(로지스틱 회귀, 수치미분)
 import os
 import sys
 from pathlib import Path
