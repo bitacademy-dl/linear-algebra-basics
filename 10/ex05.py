@@ -27,9 +27,33 @@ times = [2, 4, 6, 8]
 ptimes = [0, 4, 2, 3]
 scores = [81, 93, 91, 97]
 
+
+x = np.array([0, 0, 0])
+for i in range(5000):
+    h = 1.0e-4
+    h1 = mean_squares_error(np.array([x[0]+h, x[1], x[2]]), (times, ptimes, scores))
+    h2 = mean_squares_error(np.array([x[0]-h, x[1], x[2]]), (times, ptimes, scores))
+    dx0 = (h1-h2) / (2*h)
+
+    h1 = mean_squares_error(np.array([x[0], x[1]+h, x[2]]), (times, ptimes, scores))
+    h2 = mean_squares_error(np.array([x[0], x[1]-h, x[2]]), (times, ptimes, scores))
+    dx1 = (h1-h2)/ (2 * h)
+
+    h1 = mean_squares_error(np.array([x[0], x[1], x[2] + h]), (times, ptimes, scores))
+    h2 = mean_squares_error(np.array([x[0], x[1], x[2] - h]), (times, ptimes, scores))
+    dx2 = (h1-h2) / (2 * h)
+
+    gradient = np.array([dx0, dx1, dx2])
+    print(f'epoch={i + 1}, gradient={gradient}, x={x}')
+
+    x = x - 0.01 * gradient
+
+result = x
+
+
 # 경사하강법
-result = gradient_descent(mean_squares_error, np.array([0., 0., 0.]), epoch=5000, data_training=(times, ptimes, scores))
-print(result)
+# result = gradient_descent(mean_squares_error, np.array([0., 0., 0.]), epoch=5000, data_training=(times, ptimes, scores))
+# print(result)
 
 # ==============================================================================================
 
